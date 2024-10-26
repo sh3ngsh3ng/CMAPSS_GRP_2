@@ -5,3 +5,6 @@
 - Dataset has 26 columns.
 - Reference: https://data.nasa.gov/Aerospace/CMAPSS-Jet-Engine-Simulated-Data/ff5v-kuh6/about_data
 
+## Setting up TSFRESH
+- pip install tsfresh
+- Reference: https://tsfresh.readthedocs.io/en/latest/text/quick_start.html#quick-start-label
