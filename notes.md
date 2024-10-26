@@ -8,3 +8,12 @@
 ## Setting up TSFRESH
 - pip install tsfresh
 - Reference: https://tsfresh.readthedocs.io/en/latest/text/quick_start.html#quick-start-label
+
+## What data should we drop?
+- Dropping data of constant values
+- For constant values, standard deviation is zero -> not able to normalize as can't divide by zero
+
+## Labelling of Data
+### Types of drgradation model
+1) Linear Degradation
+2) Piece-wise linear degradation
