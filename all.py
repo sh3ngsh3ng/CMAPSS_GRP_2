@@ -18,7 +18,7 @@ train_engine_ids, test_engine_ids = train_test_split(engine_ids, test_size=0.2, 
 train_data = train_df[train_df['engine_id'].isin(train_engine_ids)]
 test_data = train_df[train_df['engine_id'].isin(test_engine_ids)]
 
-columns_to_drop = ["setting3", "sensor1", "sensor5", "sensor10", "sensor16", "sensor19"]
+columns_to_drop = ["setting3", "sensor1", "sensor5", "sensor6", "sensor10", "sensor16", "sensor18", "sensor19"]
 train_df_dropped = train_df.drop(columns=columns_to_drop)
 
 # Normalization
@@ -54,9 +54,8 @@ def piecewise_rul(cycle, max_cycle):
     
 train_df_normalized["PWRUL"] = train_df_normalized.apply(lambda row: piecewise_rul(row['cycle'], row['cycle'] + row['RUL']), axis=1)
 
-
-from tsfresh.utilities.dataframe_functions import roll_time_series
-df_rolled = roll_time_series(train_df_normalized, column_id="engine_id", column_sort="cycle", max_timeshift=30, min_timeshift=5)
-
 from tsfresh import extract_features
-features = extract_features(df_rolled, column_id="engine_id", column_sort="cycle")
+from tsfresh.utilities.dataframe_functions import impute
+
+extracted_features = extract_features(train_df_normalized, column_id="engine_id", column_sort="cycle")
+impute(extracted_features)
